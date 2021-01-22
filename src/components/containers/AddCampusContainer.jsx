@@ -28,9 +28,7 @@ class AddCampusContainer extends Component {
         this.setState ( {[e.target.name]:e.target.value});   
     }
 
-  componentDidMount() {
-    this.props.fetchAllCampus();
-  }
+
 
   render() {
     return (
@@ -41,25 +39,12 @@ class AddCampusContainer extends Component {
 } 
 
 
-// Map state to props;
-const mapState = state => {
-  return {
-    allCampus: state.allCampus
-  }
-}
-
-// Map dispatch to props;
-const mapDispatch = dispatch => {
-  return {
-    fetchAllCampus: () => dispatch(fetchAllCampusThunk())
-  }
-}
-
 // Type check props;
-AddCampusContainer.propTypes = {
-  allCampus: PropTypes.array.isRequired,
-  fetchAllCampus: PropTypes.func.isRequired
-}
+AddAStudentContainer.propTypes = {
+    campusName: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+
+};
 
 // Export our store-connected container by default;
-export default connect(mapState, mapDispatch)(AddCampusContainer);
+export default AddCampusContainer;

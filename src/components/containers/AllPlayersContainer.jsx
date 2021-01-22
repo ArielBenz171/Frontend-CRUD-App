@@ -1,4 +1,4 @@
-/* import React, { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAllPlayersThunk } from '../../thunks';
@@ -37,4 +37,3 @@ AllPlayersContainer.propTypes = {
 
 // Export our store-connected container by default;
 export default connect(mapState, mapDispatch)(AllPlayersContainer);
- */
