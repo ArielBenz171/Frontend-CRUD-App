@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { SingleStudentView } from '../views';
+//import { SingleStudentContainer} from '../views';
 import axios from 'axios';
 
 
@@ -11,7 +10,7 @@ class AddAStudentContainer extends Component {
         this.state = {
             firstName: '',  
             lastName: '',
-            gpa: '',
+            gpa: '0',
             email: '',
             imageUrl: '',
             campusName: '',
@@ -23,24 +22,22 @@ class AddAStudentContainer extends Component {
       this.setState ( {[e.target.name]:e.target.value});   
     }  
 
-    handleValidation =(e) => {
-      let firstName = '';
+    /*handleValidation =(e) => {
+    //  let firstName = '';
       let lastName = '';
       let formIsValid =true;
       let error ={};
       let email ='';
-  }
+    }
+    */
 
     handleSubmit=async (e) => {
       e.preventDefault();
-      const singleStudent = await axios.post(
-        //to add newStudent after student/, need to add newStudent after '/' in app.post funcition
-        //in student.js file inside routes folder 
+      const student = await axios.post(
         'http://localhost:8080/routes/student/',
         this.state
       );
     }
-
 
   render() {
       return (
@@ -67,23 +64,23 @@ class AddAStudentContainer extends Component {
             <label>
                 GPA:
               <input
-                type="text"
+                type="number"
                 name="gpa"
                 onChange={this.handleChange}
                 value={this.state.email}
               />
             </label>
-              <label>
-                Email:
-                <input
-                  type="text"
-                  name="pokeTypes"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                />
+            <label>
+              Email:
+              <input
+                type="text"
+                name="pokeTypes"
+                onChange={this.handleChange}
+                value={this.state.email}
+              />
             </label>
             <label>
-              Student Photo Url:
+              Student Image Url:
                 <input
                   type="text"
                   name="pokeTypes"
@@ -100,9 +97,10 @@ class AddAStudentContainer extends Component {
                   value={this.state.campusName}
                 />
               </label>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" />       
           </form>
         </div>
+      
       )
     }
 };
@@ -111,7 +109,10 @@ class AddAStudentContainer extends Component {
 AddAStudentContainer.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired
+  email: PropTypes.string.isRequired,
+  campusName:PropTypes.string,
+  imageUrl: PropTypes.string,
+  gpa: PropTypes.number
 };
 
 // Export our store-connected container by default;
